@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class Header extends Component {
-  componentDidMount() {
-    console.log(this.props.emailInput);
-  }
-
   render() {
     const { emailInput } = this.props;
     return (
