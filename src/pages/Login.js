@@ -26,7 +26,7 @@ class Login extends React.Component {
     history.push('/carteira');
   }
 
-  handleChange(event) { //com ajuda do @BrunoMoraes
+  handleChange(event) { // com ajuda do @BrunoMoraes
     const theKey = event.target.name;
     const theEmail = document.getElementById('email');
     const thePassword = document.getElementById('password').value;
