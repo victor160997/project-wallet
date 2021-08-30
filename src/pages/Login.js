@@ -26,17 +26,16 @@ class Login extends React.Component {
     history.push('/carteira');
   }
 
-  handleChange(event) {
+  handleChange(event) { //com ajuda do @BrunoMoraes
     const theKey = event.target.name;
     const theEmail = document.getElementById('email');
-    const thePassword = document.getElementById('password');
+    const thePassword = document.getElementById('password').value;
+    const minPass = 6;
     this.setState({ [theKey]: event.target.value });
-    if (!theEmail.checkValidity()) {
-      this.setState({ desabled: true });
-    } else if (!thePassword.checkValidity()) {
-      this.setState({ desabled: true });
-    } else {
+    if (theEmail.checkValidity() && thePassword.length >= minPass) {
       this.setState({ desabled: false });
+    } else {
+      this.setState({ desabled: true });
     }
   }
 
