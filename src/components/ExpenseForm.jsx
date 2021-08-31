@@ -1,13 +1,37 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getCoinsApiThunk } from '../actions';
 
-export default class ExpenseForm extends Component {
+class ExpenseForm extends Component {
+  constructor(props) {
+    super(props);
+    this.currenciesArray = this.currenciesArray.bind(this);
+  }
+
+  componentDidMount() {
+    const { getCoinsProps } = this.props;
+    getCoinsProps();
+  }
+
+  currenciesArray() {
+    const { currenciesProps } = this.props;
+    return Object.keys(currenciesProps).map((coin, i) => {
+      if (coin !== 'USDT' && coin !== 'DOGE') {
+        return <option value={ coin } key={ i }>{ coin }</option>;
+      }
+      return undefined;
+    });
+  }
+
   render() {
+    const { currenciesProps } = this.props;
     return (
       <fieldset>
         <form>
           <label htmlFor="valor">
             Valor
-            <input type="number" name="valor" id="valor" />
+            <input type="" name="valor" id="valor" />
           </label>
           <label htmlFor="descricao">
             Descrição
@@ -16,7 +40,7 @@ export default class ExpenseForm extends Component {
           <label htmlFor="moeda">
             Moeda
             <select name="moeda" id="moeda">
-              <option value="test">teste</option>
+              { currenciesProps ? this.currenciesArray() : console.log('oi') }
             </select>
           </label>
           <label htmlFor="pagamento">
@@ -42,3 +66,18 @@ export default class ExpenseForm extends Component {
     );
   }
 }
+
+ExpenseForm.propTypes = {
+  getCoinsProps: PropTypes.func.isRequired,
+  currenciesProps: PropTypes.objectOf(PropTypes.object).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  currenciesProps: state.getCoinsReducer.currencies.currencies,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getCoinsProps: () => dispatch(getCoinsApiThunk()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseForm);
