@@ -172,7 +172,10 @@ class ExpenseForm extends Component {
             { renderCoin(exp, 0) }
             { renderCoin(exp, 2) }
             <td>Real</td>
-            <td>Editar/Excluir</td>
+            <td>
+              Editar/
+              <button type="button">Excluir</button>
+            </td>
           </tr>
         ))}
       </table>
