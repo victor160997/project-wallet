@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCoinsApiThunk, getExpensesAction } from '../actions';
 import { getCoinsApi } from '../services/awesomeApi';
+import HeaderTable from './HeaderTable';
+import renderCoin from './Funcs';
 
 class ExpenseForm extends Component {
   constructor(props) {
@@ -25,6 +27,7 @@ class ExpenseForm extends Component {
     this.inputTag = this.inputTag.bind(this);
     this.updateExchange = this.updateExchange.bind(this);
     this.submitExpense = this.submitExpense.bind(this);
+    this.renderTable = this.renderTable.bind(this);
   }
 
   componentDidMount() {
@@ -155,26 +158,52 @@ class ExpenseForm extends Component {
     this.setState((previus) => ({ id: previus.id + 1 }));
   }
 
+  renderTable(expenses) {
+    return (
+      <table border="3">
+        <HeaderTable />
+        { expenses.map((exp) => (
+          <tr key={ exp.id }>
+            <td>{ exp.description }</td>
+            <td>{ exp.tag }</td>
+            <td>{ exp.method }</td>
+            <td>{ exp.value }</td>
+            { renderCoin(exp, 1) }
+            { renderCoin(exp, 0) }
+            { renderCoin(exp, 2) }
+            <td>Real</td>
+            <td>Editar/Excluir</td>
+          </tr>
+        ))}
+      </table>
+    );
+  }
+
   render() {
     const { id, exchangeRates } = this.state;
+    const { expensesProps } = this.props;
     return (
-      <fieldset>
-        <form>
-          { this.inputValor() }
-          { this.inputDescription() }
-          { this.inputCoin() }
-          { this.inputPagamento() }
-          { this.inputTag() }
-          <button
-            type="submit"
-            onClick={ this.updateExchange }
-          >
-            Adicionar despesa
-          </button>
-          { console.log(id) }
-          { console.log(exchangeRates) }
-        </form>
-      </fieldset>
+      <body>
+
+        <fieldset>
+          <form>
+            { this.inputValor() }
+            { this.inputDescription() }
+            { this.inputCoin() }
+            { this.inputPagamento() }
+            { this.inputTag() }
+            <button
+              type="submit"
+              onClick={ this.updateExchange }
+            >
+              Adicionar despesa
+            </button>
+            { console.log(id) }
+            { console.log(exchangeRates) }
+          </form>
+        </fieldset>
+        { expensesProps.length > 0 ? this.renderTable(expensesProps) : <h1> </h1> }
+      </body>
     );
   }
 }
