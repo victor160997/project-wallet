@@ -10,6 +10,11 @@ export const getCoinsApiSuccess = (payload) => ({
   payload,
 });
 
+export const getExpensesAction = (payload) => ({
+  type: 'GET_EXPENSES',
+  payload,
+});
+
 export const getCoinsApiThunk = () => async (dispatch) => {
   const response = await getCoinsApi();
   const payload = {
