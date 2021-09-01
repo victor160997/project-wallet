@@ -9,11 +9,11 @@ class ExpenseForm extends Component {
     super(props);
     this.state = {
       id: 0,
-      valor: '',
-      descricao: '',
-      moeda: '',
-      pagamento: '',
-      despesa: '',
+      value: 0,
+      description: '',
+      currency: '',
+      method: '',
+      tag: '',
       exchangeRates: '',
     };
     this.currenciesArray = this.currenciesArray.bind(this);
@@ -48,15 +48,15 @@ class ExpenseForm extends Component {
   }
 
   inputValor() {
-    const { valor } = this.state;
+    const { value } = this.state;
     return (
       <label htmlFor="valor">
         Valor
         <input
           type="number"
-          name="valor"
+          name="value"
           id="valor"
-          value={ valor }
+          value={ value }
           required
           onChange={ this.handleChange }
         />
@@ -65,15 +65,15 @@ class ExpenseForm extends Component {
   }
 
   inputDescription() {
-    const { descricao } = this.state;
+    const { description } = this.state;
     return (
       <label htmlFor="descricao">
         Descrição
         <input
           type="text"
-          name="descricao"
+          name="description"
           id="descricao"
-          value={ descricao }
+          value={ description }
           required
           onChange={ this.handleChange }
         />
@@ -82,15 +82,15 @@ class ExpenseForm extends Component {
   }
 
   inputCoin() {
-    const { moeda } = this.state;
+    const { currency } = this.state;
     const { currenciesProps } = this.props;
     return (
       <label htmlFor="moeda">
         Moeda
         <select
-          name="moeda"
+          name="currency"
           id="moeda"
-          value={ moeda }
+          value={ currency }
           required
           onChange={ this.handleChange }
         >
@@ -101,59 +101,56 @@ class ExpenseForm extends Component {
   }
 
   inputPagamento() {
-    const { pagamento } = this.state;
+    const { method } = this.state;
     return (
       <label htmlFor="pagamento">
         Método de pagamento
         <select
-          name="pagamento"
+          name="method"
           id="pagamento"
-          value={ pagamento }
+          value={ method }
           required
           onChange={ this.handleChange }
         >
-          <option value="dinheiro">Dinheiro</option>
-          <option value="credito">Cartão de crédito</option>
-          <option value="debito">Cartão de débito</option>
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Cartão de crédito">Cartão de crédito</option>
+          <option value="Cartão de débito">Cartão de débito</option>
         </select>
       </label>
     );
   }
 
   inputTag() {
-    const { despesa } = this.state;
+    const { tag } = this.state;
     return (
       <label htmlFor="despesa">
         Tag
         <select
-          name="despesa"
+          name="tag"
           id="despesa"
-          value={ despesa }
+          value={ tag }
           required
           onChange={ this.handleChange }
         >
-          <option value="alimentacao">Alimentação</option>
-          <option value="lazer">Lazer</option>
-          <option value="trabalho">Trabalho</option>
-          <option value="transporte">Transporte</option>
-          <option value="saude">Saúde</option>
+          <option value="Alimentação">Alimentação</option>
+          <option value="Lazer">Lazer</option>
+          <option value="Trabalho">Trabalho</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Saúde">Saúde</option>
         </select>
       </label>
     );
   }
 
-  updateExchange() {
-    getCoinsApi().then((res) => {
-      this.setState({
-        exchangeRates: res,
-      });
-    });
+  async updateExchange(event) {
+    event.preventDefault();
+    const response = await getCoinsApi();
+    this.setState({ exchangeRates: response });
+    this.submitExpense();
   }
 
-  submitExpense(event) {
-    event.preventDefault();
+  submitExpense() {
     const { getExpenseProps, expensesProps } = this.props;
-    this.updateExchange();
     getExpenseProps([...expensesProps, this.state]);
     this.setState((previus) => ({ id: previus.id + 1 }));
   }
@@ -168,10 +165,9 @@ class ExpenseForm extends Component {
           { this.inputCoin() }
           { this.inputPagamento() }
           { this.inputTag() }
-          {/* { this.updateExchange() } */}
           <button
             type="submit"
-            onClick={ this.submitExpense }
+            onClick={ this.updateExchange }
           >
             Adicionar despesa
           </button>
@@ -191,8 +187,8 @@ ExpenseForm.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currenciesProps: state.getCoinsReducer.currencies.currencies,
-  expensesProps: state.getCoinsReducer.expenses,
+  currenciesProps: state.wallet.currencies.currencies,
+  expensesProps: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({

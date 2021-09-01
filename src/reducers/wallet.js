@@ -3,7 +3,7 @@ const ESTADO_INICIAL_WALLET = {
   expenses: [],
 };
 
-const getCoinsReducer = (state = ESTADO_INICIAL_WALLET, action) => {
+const wallet = (state = ESTADO_INICIAL_WALLET, action) => {
   switch (action.type) {
   case 'GET_COINS_SUCCESS':
     return {
@@ -20,4 +20,4 @@ const getCoinsReducer = (state = ESTADO_INICIAL_WALLET, action) => {
   }
 };
 
-export default getCoinsReducer;
+export default wallet;
