@@ -168,7 +168,7 @@ class ExpenseForm extends Component {
           { this.inputCoin() }
           { this.inputPagamento() }
           { this.inputTag() }
-          { this.updateExchange() }
+          {/* { this.updateExchange() } */}
           <button
             type="submit"
             onClick={ this.submitExpense }
@@ -186,8 +186,8 @@ class ExpenseForm extends Component {
 ExpenseForm.propTypes = {
   getCoinsProps: PropTypes.func.isRequired,
   currenciesProps: PropTypes.objectOf(PropTypes.object).isRequired,
-  getExpenseProps: PropTypes.func.isRequired,
   expensesProps: PropTypes.objectOf(PropTypes.string).isRequired,
+  getExpenseProps: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
