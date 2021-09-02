@@ -15,6 +15,14 @@ export const getExpensesAction = (payload) => ({
   payload,
 });
 
+export const removeExpenseAction = (payload, expenses) => {
+  const expUpdate = expenses.filter((gasto) => payload !== gasto);
+  return {
+    type: 'REMOVE_EXPENSE',
+    expUpdate,
+  };
+};
+
 export const getCoinsApiThunk = () => async (dispatch) => {
   const response = await getCoinsApi();
   const payload = {

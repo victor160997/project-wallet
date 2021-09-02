@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getCoinsApiThunk, getExpensesAction } from '../actions';
+import { getCoinsApiThunk, getExpensesAction, removeExpenseAction } from '../actions';
 import { getCoinsApi } from '../services/awesomeApi';
 import HeaderTable from './HeaderTable';
-import renderCoin from './Funcs';
+import renderCoin, { getExpenseToRemove } from './Funcs';
 
 class ExpenseForm extends Component {
   constructor(props) {
@@ -159,6 +159,7 @@ class ExpenseForm extends Component {
   }
 
   renderTable(expenses) {
+    const { removeExpPp } = this.props;
     return (
       <table border="3">
         <HeaderTable />
@@ -174,7 +175,14 @@ class ExpenseForm extends Component {
             <td>Real</td>
             <td>
               Editar/
-              <button id="excluiBt" type="button">Excluir</button>
+              <button
+                data-testid="delete-btn"
+                id="excluiBt"
+                type="button"
+                onClick={ () => removeExpPp(getExpenseToRemove(exp, expenses), expenses) }
+              >
+                Excluir
+              </button>
             </td>
           </tr>
         ))}
@@ -216,6 +224,7 @@ ExpenseForm.propTypes = {
   currenciesProps: PropTypes.objectOf(PropTypes.object).isRequired,
   expensesProps: PropTypes.objectOf(PropTypes.string).isRequired,
   getExpenseProps: PropTypes.func.isRequired,
+  removeExpPp: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -226,6 +235,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getCoinsProps: () => dispatch(getCoinsApiThunk()),
   getExpenseProps: (payload) => dispatch(getExpensesAction(payload)),
+  removeExpPp: (payload, expenses) => dispatch(removeExpenseAction(payload, expenses)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseForm);
