@@ -4,7 +4,7 @@ export default function renderCoin(exp, a) {
   const coin = exp.currency;
   const moeda = exp.exchangeRates[coin].name;
   const cambio = exp.exchangeRates[coin].ask;
-  const convert = parseFloat(exp.value) * parseFloat(exp.value);
+  const convert = parseFloat(exp.value) * parseFloat(cambio);
   const resultado = moeda.replace('/Real Brasileiro', '');
   if (a === 1) {
     return (
@@ -20,3 +20,14 @@ export default function renderCoin(exp, a) {
     <td>{ parseFloat(parseFloat(cambio).toFixed(2)) }</td>
   );
 }
+
+/* getExpenseToRemove(evt) {
+  const moeda = evt
+    .target
+    .parentElement
+    .previousSibling
+    .previousSibling
+    .previousSibling
+    .previousSibling
+    .innerText;
+} */

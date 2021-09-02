@@ -174,7 +174,7 @@ class ExpenseForm extends Component {
             <td>Real</td>
             <td>
               Editar/
-              <button type="button">Excluir</button>
+              <button id="excluiBt" type="button">Excluir</button>
             </td>
           </tr>
         ))}
