@@ -1,0 +1,26 @@
+.header-wallet {
+  border: solid white 2px;
+  display: flex;
+}
+
+.title-wallet {
+  color: white;
+  margin: 15px;
+}
+
+.body-wallet button {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background-color: rgb(36, 32, 39);
+  border-radius: 10px;
+  color: blanchedalmond;
+  padding: 5px;
+  margin: 10px;
+  border: solid white 2px
+}
+
+.body-wallet button:hover {
+  background-color: blanchedalmond;
+  color: rgb(36, 32, 39);
+}

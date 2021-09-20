@@ -21,14 +21,6 @@ export default function renderCoin(exp, a) {
   );
 }
 
-/* export function getObjectExpenseToRemove(moeda, expenses) {
-  console.log(expenses.find((exp) => {
-    const coin = exp.currency;
-    const finderCoin = exp.exchangeRates[coin].name.replace('/Real Brasileiro', '');
-    return moeda === finderCoin;
-  }));
-}
- */
 export function getExpenseToRemove(exp, expenses) {
   const idToRemove = exp.id;
   const expToRemove = expenses.find((expen) => idToRemove === expen.id);

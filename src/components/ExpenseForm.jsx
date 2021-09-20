@@ -5,6 +5,7 @@ import { getCoinsApiThunk, getExpensesAction, removeExpenseAction } from '../act
 import { getCoinsApi } from '../services/awesomeApi';
 import HeaderTable from './HeaderTable';
 import renderCoin, { getExpenseToRemove } from './Funcs';
+import './expense.css';
 
 class ExpenseForm extends Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class ExpenseForm extends Component {
           value={ value }
           required
           onChange={ this.handleChange }
+          className="input-expense"
         />
       </label>
     );
@@ -79,6 +81,7 @@ class ExpenseForm extends Component {
           value={ description }
           required
           onChange={ this.handleChange }
+          className="input-expense"
         />
       </label>
     );
@@ -161,7 +164,7 @@ class ExpenseForm extends Component {
   renderTable(expenses) {
     const { removeExpPp } = this.props;
     return (
-      <table border="3">
+      <table border="3" className="theTable">
         <HeaderTable />
         { expenses.map((exp) => (
           <tr key={ exp.id }>
@@ -174,7 +177,11 @@ class ExpenseForm extends Component {
             { renderCoin(exp, 2) }
             <td>Real</td>
             <td>
-              Editar/
+              <button
+                type="button"
+              >
+                Editar
+              </button>
               <button
                 data-testid="delete-btn"
                 id="excluiBt"
@@ -194,7 +201,7 @@ class ExpenseForm extends Component {
     const { id, exchangeRates } = this.state;
     const { expensesProps } = this.props;
     return (
-      <body>
+      <body className="expense-body">
 
         <fieldset>
           <form>

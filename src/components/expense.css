@@ -1,0 +1,29 @@
+.input-expense {
+  background-color: rgb(36, 32, 39);
+  margin: 5px;
+  color: blanchedalmond;
+  border: solid blanchedalmond 2px;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.expense-body {
+  color: white;
+}
+
+.expense-body label {
+  margin: 10px;
+}
+
+.expense-body select {
+  background-color: rgb(36, 32, 39);
+  margin: 3px;
+  color: blanchedalmond;
+  border: solid blanchedalmond 2px;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.theTable {
+  width: 100vw;
+}

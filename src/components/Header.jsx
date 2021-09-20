@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import './Header.css';
 
 class Header extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class Header extends Component {
         array.push(parseFloat(gasto.value) * updateCurrencyValue);
       });
       const t = array.reduce((total, n) => total + n, 0);
-      return t;
+      return t.toFixed(2);
     }
     return 0;
   }
@@ -32,16 +33,22 @@ class Header extends Component {
   render() {
     const { emailInput } = this.props;
     return (
-      <header>
-        <p data-testid="email-field">
+      <header className="bodyHeader animationFadeInFadeOutHeader">
+        <p data-testid="email-field" className="child">
+          <p className="th">User </p>
           { emailInput }
         </p>
         <p
           data-testid="total-field"
+          className="child"
         >
-          { this.updateTotal() }
+          <p className="th">Total de gastos </p>
+          { `R$ ${this.updateTotal()}` }
         </p>
-        <p data-testid="header-currency-field">BRL</p>
+        <p data-testid="header-currency-field" className="child">
+          <p className="th">Moeda </p>
+          BRL
+        </p>
       </header>
     );
   }

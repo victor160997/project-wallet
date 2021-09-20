@@ -1,0 +1,100 @@
+.body-login {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:blanchedalmond;
+  font-size:x-large;
+  height: 100vh;
+  
+}
+
+.inputs-login {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  border: solid rgb(95, 95, 95) 3px;
+  margin-bottom: 5px;
+  color:blanchedalmond;
+  font-size:x-large;
+  border-radius: 5px;
+  width: 100%;
+  background-color: rgb(114, 112, 108);
+}
+
+#button-login {
+  margin-top: 25px;
+  border: solid rgb(95, 95, 95) 3px;
+  font-size:x-large;
+  width: 36%;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: rgb(114, 112, 108);
+  color: rgb(36, 32, 39);
+  transition: transform 1s;
+}
+
+#button-login:hover {
+  background-color: rgb(36, 32, 39);
+  color:blanchedalmond;
+  transform: scale(1.3);
+}
+
+.headind-login {
+  color:blanchedalmond;
+  background-color: rgb(156, 80, 25);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.label-login {
+  display: flex;
+  justify-content: center;
+  align-items:flex-start;
+  flex-direction: column;
+  width: 35%;
+}
+
+.animationFadeInFadeOut {
+  animation: fadeInFadeOut 2s linear infinite;
+}
+
+@keyframes fadeInFadeOut {
+  0% {background-color:rgb(58, 206, 53);}
+  50% {background-color: rgb(39, 104, 37);;}
+  100% {background-color:rgb(58, 206, 53);}
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateZ(15deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotateZ(0deg);
+    opacity: 1;
+  }
+}
+
+.animationSpinner {
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes backgroundLogin {
+  0% {background-color: rgb(20, 19, 20);}
+  50% {background-color: rgb(73, 63, 63);}
+  100% {background-color: rgb(20, 19, 20);}
+}
+
+.changeBackGround {
+  animation: backgroundLogin 8s linear infinite;
+}
+
+
