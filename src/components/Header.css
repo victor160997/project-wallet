@@ -1,0 +1,38 @@
+.bodyHeader {
+  background-color: rgb(58, 206, 53);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.animationFadeInFadeOutHeader {
+  animation: fadeInFadeOut 10s linear infinite;
+}
+
+@keyframes fadeInFadeOut {
+  0% {background-color:rgb(58, 206, 53);}
+  50% {background-color: rgb(39, 104, 37);;}
+  100% {background-color:rgb(58, 206, 53);}
+}
+
+.child {
+  margin-bottom: 30px;
+  margin-right: 20px;
+  color: rgb(0, 0, 0);
+  border: solid rgb(0, 0, 0) 3px;
+  padding: 0 15px 15px 15px;
+  border-radius: 15px;
+  transition: transfom 1s;
+}
+
+.child:focus {
+  transform: scale(1.2);
+}
+
+.th {
+  background-color:rgb(255, 255, 255);
+  padding: 5px;
+  border: solid rgb(0, 0, 0) 3px;
+  border-radius: 15px;
+}
