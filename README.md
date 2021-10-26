@@ -1,1 +1,2 @@
-Projeto trybe-wallet.
+* Tecnologias utilizadas: HTML, CSS, JavaScript, ReactJs, Redux.
+* Resumo: essa aplicação consiste em um formuláio no qual a pessoa usuária pode preencher informações de algum gasto que ele ou ela teve. Essas informações são armazenadas em uma tabela. O grande diferencial é que a pessoa usuária pode selecionar uma moeda na qual o gasto foi feito, sendo a assim a converção do valor é feita de forma dinâmica para essa moeda selecionada. Isso é possível pois foi usada na aplicação uma API que retorna valores de várias moedas do mundo atualizadas em tempo real.
